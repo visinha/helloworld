@@ -1,25 +1,13 @@
-pipeline
-	{
-
-		agent any
-			stages{
-				stage ("Build"){
-					steps{
-						echo "This is a Build step"
-					}
-				}
-				stage ("Test"){
-					steps{
-						echo "This is a Test step"
-					}
-				}
-				stage ("Deploy"){
-					steps{
-						echo "This is a Deploy step"
-					}
-				}
-			
-
-				}
-
-	}
+pipeline {
+    agent any
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
+    }
+}
